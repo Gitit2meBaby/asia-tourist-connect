@@ -97,15 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
         totalDistance = endpoint - startPoint;
     });
 
-
-
-
-
-
-
-
-
-
     // SET TIMEOUT TO DISPLAY HERO TEXT
     const heroTitle = document.querySelector('#heroHeading');
     const heroText = document.querySelector('#heroText');
@@ -131,8 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(typeWriter, speed);
         }
     }
-
-
 
     // COLOR CHANGE ON SCROLL
     window.onscroll = function () {
@@ -320,20 +309,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // CHANGE IMAGE ON HOVER 
-    const imageElement = document.getElementById('imageCanguu');
-    const imageContainer = document.querySelector('.project-img')
-    const defaultImageSrc = 'assets/canguu-screenshot.png';
-    const hoverImageSrc = 'assets/canguu-mob.webp';
+    // canguu
+    const canguuImageElement = document.getElementById('imageCanguu');
+    const canguuImageContainer = document.querySelector('.canguu-img')
+    const canguuDefaultImageSrc = 'assets/canguu-screenshot.png';
+    const canguuHoverImageSrc = 'assets/canguu-mob.webp';
 
-    imageContainer.addEventListener('mouseenter', () => {
-        imageElement.src = hoverImageSrc;
+    canguuImageContainer.addEventListener('mouseenter', () => {
+        canguuImageElement.src = canguuHoverImageSrc;
     });
 
-    imageContainer.addEventListener('mouseleave', () => {
-        imageElement.src = defaultImageSrc;
+    canguuImageContainer.addEventListener('mouseleave', () => {
+        canguuImageElement.src = canguuDefaultImageSrc;
     });
 
+    // thamel
+    const thamelImageElement = document.getElementById('imageThamel');
+    const thamelImageContainer = document.querySelector('.thamel-img')
+    const thamelDefaultImageSrc = 'assets/thamel-screenshot.webp';
+    const thamelHoverImageSrc = 'assets/thamel-mob.webp';
 
+    thamelImageContainer.addEventListener('mouseenter', () => {
+        thamelImageElement.src = thamelHoverImageSrc;
+    });
+
+    thamelImageContainer.addEventListener('mouseleave', () => {
+        thamelImageElement.src = thamelDefaultImageSrc;
+    });
+
+    // xmax
+    const xmaxImageElement = document.getElementById('imageXmax');
+    const xmaxImageContainer = document.querySelector('.xmax-img')
+    const xmaxDefaultImageSrc = 'assets/xmax-screenshot.webp';
+    const xmaxHoverImageSrc = 'assets/xmax-mob.webp';
+
+    xmaxImageContainer.addEventListener('mouseenter', () => {
+        xmaxImageElement.src = xmaxHoverImageSrc;
+    });
+
+    xmaxImageContainer.addEventListener('mouseleave', () => {
+        xmaxImageElement.src = xmaxDefaultImageSrc;
+    });
+
+    // COLOR FLIP ON PORTFOLIO PROJECTS
+    const portfolioObserver = new IntersectionObserver((entries) => {
+        const someText = document.querySelector('#someText')
+        const deliverDropdown = document.querySelector('#deliverDropdown')
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('light');
+                entry.target.classList.remove('dark');
+                someText.style.color = 'purple'
+                deliverDropdown.style.color = 'black'
+            } else {
+                entry.target.classList.add('dark');
+                entry.target.classList.remove('light')
+                someText.style.color = 'var(--yellow)'
+                deliverDropdown.style.color = 'var(--textWhite)'
+            }
+        })
+    }, { threshold: 1 });
+    const portfolioContainers = document.querySelectorAll('.flip');
+    portfolioContainers.forEach((el) => portfolioObserver.observe(el));
 
 
 
